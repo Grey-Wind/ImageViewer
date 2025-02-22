@@ -44,14 +44,7 @@ namespace ImageViewer
 
         private void Window_DragOver(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effects = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effects = DragDropEffects.None;
-            }
+            e.Effects = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
             e.Handled = true;
         }
 
@@ -72,9 +65,9 @@ namespace ImageViewer
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading image:\n{ex.Message}",
-                    "Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                                "Error",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
             }
         }
     }
