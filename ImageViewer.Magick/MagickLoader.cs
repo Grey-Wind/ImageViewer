@@ -7,14 +7,14 @@ namespace ImageViewer.Magick
 {
     public class MagickLoader : IImageLoader
     {
-        public IEnumerable<string> SupportedFormats => new[]
-        {
+        public IEnumerable<string> SupportedFormats =>
+        [
         "jpg", "jpeg", "tif", "tiff", "png", "gif", "bmp", "dib",
         "jpe", "jfif", "webp", "rle", "dcm", "dc3", "dic", "eps",
         "iff", "tdi", "jpf", "jpx", "jp2", "j2c", "j2k", "jpc",
         "pcx", "raw", "pxr", "pbm", "pgm", "ppm", "pnm", "pfm",
         "pam", "sct", "tga", "vda", "icb", "vst"
-    };
+    ];
 
         public BitmapSource LoadImage(string path)
         {

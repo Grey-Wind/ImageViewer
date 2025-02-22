@@ -8,15 +8,15 @@ namespace ImageViewer.Magick.HDRI
 {
     public class HdriMagickLoader : IImageLoader
     {
-        public IEnumerable<string> SupportedFormats => new[]
-        {
+        public IEnumerable<string> SupportedFormats =>
+        [
         "heic", "psd", "pdd", "psdt", "psb",  // HDRI专用格式
         "jpg", "jpeg", "tif", "tiff", "png", "gif", "bmp", "dib",
         "jpe", "jfif", "webp", "rle", "dcm", "dc3", "dic", "eps",
         "iff", "tdi", "jpf", "jpx", "jp2", "j2c", "j2k", "jpc",
         "pcx", "raw", "pxr", "pbm", "pgm", "ppm", "pnm", "pfm",
         "pam", "sct", "tga", "vda", "icb", "vst"
-    };
+    ];
 
         public BitmapSource LoadImage(string path)
         {
