@@ -22,11 +22,11 @@ namespace ImageViewer.Magick.HDRI
         {
             using var image = new MagickImage(path);
             image.ColorType = ColorType.TrueColorAlpha;
-            image.Depth = 16;
+            image.Depth = 32;
             return CreateBitmapSource(image);
         }
 
-        private static BitmapSource CreateBitmapSource(MagickImage image)
+        private BitmapSource CreateBitmapSource(MagickImage image)
         {
             // 直接获取像素集合（无需参数）
             using var pixels = image.GetPixels();
@@ -47,7 +47,19 @@ namespace ImageViewer.Magick.HDRI
                 0);
 
             bitmap.Freeze();
+
+            // 在不再使用时清除 bitmap 对象
+            ClearImageCache(bitmap);
+
             return bitmap;
+        }
+
+        public void ClearImageCache(WriteableBitmap image)
+        {
+            // 强制垃圾回收，清除图片对象
+            image = null!;  // 解除引用
+            GC.Collect();  // 强制进行垃圾回收
+            GC.WaitForPendingFinalizers(); // 等待垃圾回收完成
         }
     }
 }

@@ -11,7 +11,9 @@ namespace ImageViewer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IImageLoader? _imageLoader;
+        private readonly IImageLoader? _imageLoader = null;
+
+        private string? _imagePath;
 
         public MainWindow()
         {
@@ -38,8 +40,17 @@ namespace ImageViewer
             var dialog = new OpenFileDialog();
             if (dialog.ShowDialog() == true)
             {
+                _imagePath = dialog.FileName;
                 LoadImage(dialog.FileName);
             }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainImage.Source = null;
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void Window_DragOver(object sender, DragEventArgs e)
@@ -52,7 +63,8 @@ namespace ImageViewer
         {
             if (e.Data.GetData(DataFormats.FileDrop) is string[] files && files.Length > 0)
             {
-                LoadImage(files[0]);
+                _imagePath = files[0];  // 将文件路径赋值给 _imagePath
+                LoadImage(files[0]);   // 调用 LoadImage 方法加载图像
             }
         }
 

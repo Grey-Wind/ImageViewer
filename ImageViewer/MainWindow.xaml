@@ -3,8 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="Image Viewer"
-    Width="Auto"
-    Height="Auto"
+    Width="500"
+    Height="350"
     AllowDrop="True"
     DragOver="Window_DragOver"
     Drop="Window_Drop">
@@ -14,13 +14,34 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button
-            Margin="5"
-            Click="OpenButton_Click"
-            Content="Open Image" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                x:Name="OpenButton"
+                Grid.Column="0"
+                Height="Auto"
+                Margin="5"
+                Click="OpenButton_Click"
+                Content="Open Image" />
+
+            <Button
+                x:Name="ClearButton"
+                Grid.Column="1"
+                Height="Auto"
+                Margin="5"
+                Click="ClearButton_Click"
+                Content="Clear Image" />
+        </Grid>
+
         <Image
             x:Name="MainImage"
             Grid.Row="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             Stretch="Uniform" />
     </Grid>
 </Window>
