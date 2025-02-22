@@ -56,11 +56,11 @@ namespace ImageViewer
             }
         }
 
-        internal void LoadImage(string path)
+        internal async void LoadImage(string path)
         {
             try
             {
-                MainImage.Source = _imageLoader!.LoadImage(path);
+                MainImage.Source = await Task.FromResult(_imageLoader!.LoadImage(path));
             }
             catch (Exception ex)
             {

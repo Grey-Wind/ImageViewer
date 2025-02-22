@@ -22,7 +22,7 @@ namespace ImageViewer.Magick
             return CreateBitmapSource(image);
         }
 
-        private static BitmapSource CreateBitmapSource(MagickImage image)
+        private static BitmapImage CreateBitmapSource(MagickImage image)
         {
             image.Format = MagickFormat.Bmp;
             var bitmap = new BitmapImage();
