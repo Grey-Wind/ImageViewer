@@ -6,6 +6,5 @@ namespace ImageViewer.Core
     {
         BitmapSource LoadImage(string path);
         IEnumerable<string> SupportedFormats { get; }
-        void ClearImageCache(BitmapImage image);
     }
 }
